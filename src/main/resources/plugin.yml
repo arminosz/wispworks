@@ -1,0 +1,26 @@
+name: WispWorks
+version: '${project.version}'
+main: dolozimm.wispworks.WispPlugin
+api-version: '1.21'
+authors: [dolozimm]
+description: Customizable magic plugin for Minecraft!
+
+commands:
+  wispworks:
+    description: Main WispWorks command
+    usage: /<command> [reload|info]
+    aliases: [ww]
+
+permissions:
+  wispworks.admin:
+    description: Admin permissions for WispWorks
+    default: op
+  wispworks.use:
+    description: Use WispWorks magic cauldrons
+    default: true
+  wispworks.craft:
+    description: Craft with magic cauldrons
+    default: true
+  wispworks.ritual:
+    description: Use WispWorks ritual system
+    default: true

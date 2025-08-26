@@ -1,0 +1,229 @@
+# Enable/disable debug messages
+debug: false
+
+# Magic cauldron settings
+cauldron:
+  # Maximum items that can be in a cauldron recipe at once
+  max-recipe-items: 10
+  
+  # Particle effects during crafting
+  particles:
+    swirl-duration: 3 # seconds
+    explosion-count: 10
+
+# Ritual system settings
+rituals:
+  # Flying Torch - Creates a floating flame that follows the player
+  flying_torch:
+    effect-type: "FLYING_TORCH"
+    items:
+      - "COAL:1"
+      - "FEATHER:1"
+    sacrifices: []
+    properties:
+      duration: 600 # seconds (10 minutes)
+
+  # Guardian Ritual - Summons a Warden that protects the summoner
+  guardian:
+    effect-type: "GUARDIAN"
+    items:
+      - "EMERALD:1"
+    sacrifices:
+      - "COW:1"
+    properties:
+      entity: "IRON_GOLEM"
+      health: 80 # less than default iron golem (default iron golem is 100, but you can set lower if needed)
+
+  # Harvest Ritual - Instantly grows all crops in a large radius
+  harvest:
+    effect-type: "HARVEST"
+    items:
+      - "BONE_MEAL:6"
+    sacrifices:
+      - "COW:1"
+    properties:
+      radius: 15 # blocks
+
+  # Blood Moon Ritual - Damages all players except the summoner (requires player sacrifice)
+  blood_moon:
+    effect-type: "BLOOD_MOON"
+    items:
+      - "REDSTONE:4"
+      - "NETHER_WART:2"
+    sacrifices:
+      - "PLAYER:1" # Requires sacrificing another player
+    properties:
+      duration: 300 # seconds (5 minutes)
+      damage: 2 # damage per interval
+
+  # Example Custom Command Ritual - Executes console commands
+  greed:
+    effect-type: "COMMAND"
+    items:
+      - "DIAMOND:1"
+      - "GOLD_INGOT:3"
+    sacrifices:
+      - "SHEEP:1"
+    properties:
+      commands:
+        - "money give %player% 5000"
+        - "tell %player% Be careful with your greed!"
+        - "smite %player%"
+  # Example Custom Crafting Ritual - Crafts any item
+  ender_duplication:
+    effect-type: "CRAFTING"
+    items:
+      - "ENDER_PEARL:1"
+      - "DIAMOND:1"
+    sacrifices: []
+    properties:
+      result: "ENDER_PEARL:2"
+
+# Mutation transformations
+mutations:
+  # Animal transformations (what each mob can turn into)
+  animals:
+    cow: [sheep, pig, chicken, rabbit]
+    sheep: [cow, pig, chicken, rabbit]
+    pig: [cow, sheep, chicken, rabbit]
+    chicken: [cow, sheep, pig, rabbit]
+    rabbit: [cow, sheep, pig, chicken]
+    horse: [donkey, mule, llama]
+    donkey: [horse, mule, llama]
+    mule: [horse, donkey, llama]
+    llama: [horse, donkey, mule]
+    wolf: [fox, ocelot, cat]
+    fox: [wolf, ocelot, cat]
+    ocelot: [wolf, fox, cat]
+    cat: [wolf, fox, ocelot]
+    # Hostile mobs (limited to common ones)
+    zombie: [skeleton, spider, creeper]
+    skeleton: [zombie, spider, creeper]
+    spider: [zombie, skeleton, creeper]
+    creeper: [zombie, skeleton, spider]
+    enderman: [zombie, skeleton, spider, creeper]
+    witch: [zombie, skeleton, spider, creeper]
+
+# Sapling transformations (what each sapling can turn into)
+  plants:
+    oak_sapling: [spruce_sapling, birch_sapling, jungle_sapling, acacia_sapling, dark_oak_sapling, mangrove_propagule, cherry_sapling, azalea, flowering_azalea]
+    spruce_sapling: [oak_sapling, birch_sapling, jungle_sapling, acacia_sapling, dark_oak_sapling, mangrove_propagule, cherry_sapling, azalea, flowering_azalea]
+    birch_sapling: [oak_sapling, spruce_sapling, jungle_sapling, acacia_sapling, dark_oak_sapling, mangrove_propagule, cherry_sapling, azalea, flowering_azalea]
+    jungle_sapling: [oak_sapling, spruce_sapling, birch_sapling, acacia_sapling, dark_oak_sapling, mangrove_propagule, cherry_sapling, azalea, flowering_azalea]
+    acacia_sapling: [oak_sapling, spruce_sapling, birch_sapling, jungle_sapling, dark_oak_sapling, mangrove_propagule, cherry_sapling, azalea, flowering_azalea]
+    dark_oak_sapling: [oak_sapling, spruce_sapling, birch_sapling, jungle_sapling, acacia_sapling, mangrove_propagule, cherry_sapling, azalea, flowering_azalea]
+    mangrove_propagule: [oak_sapling, spruce_sapling, birch_sapling, jungle_sapling, acacia_sapling, dark_oak_sapling, cherry_sapling, azalea, flowering_azalea]
+    cherry_sapling: [oak_sapling, spruce_sapling, birch_sapling, jungle_sapling, acacia_sapling, dark_oak_sapling, mangrove_propagule, azalea, flowering_azalea]
+    azalea: [oak_sapling, spruce_sapling, birch_sapling, jungle_sapling, acacia_sapling, dark_oak_sapling, mangrove_propagule, cherry_sapling, flowering_azalea]
+    flowering_azalea: [oak_sapling, spruce_sapling, birch_sapling, jungle_sapling, acacia_sapling, dark_oak_sapling, mangrove_propagule, cherry_sapling, azalea]
+
+
+# Cauldron crafting recipes
+recipes:
+  # Configurable recipes - Format: RESULT: ingredient1, ingredient2, ingredient3
+  # Refer material names from https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+  
+  # Default magical recipes (these create special items with enchantments)
+  # You can disable these by commenting them out, if desired, and make them only obtainable via quests, shops, for example.
+  mutation_bonemeal: bone_meal, nether_wart, gold_ingot
+  mutation_apple: apple, nether_wart, gold_ingot
+  
+  # Example custom recipes (feel free to modify or add your own)
+  gold_ingot: iron_ingot, iron_ingot
+  diamond: coal, coal, coal, coal, coal, coal, coal, coal
+  # emerald: diamond, gold_ingot
+
+# Messages - All strings used by the plugin
+messages:
+  prefix: "&6[WispWorks] "
+  
+  # Plugin startup/shutdown messages
+  plugin-enabled: "WispWorks has been enabled!"
+  plugin-disabled: "WispWorks has been disabled!"
+  
+  # Cauldron messages
+  cauldron-activated: "&aYour cauldron has been magically enhanced!"
+  cauldron-not-valid: "&cThis cauldron is not properly set up! Place it above fire or campfire."
+  item-added: "&7Item added to the magical recipe..."
+  crafting-complete: "&aYour magical item has been crafted!"
+  recipe-cleared: "&7Recipe cleared. You can start over."
+  cauldron-full: "&cThis cauldron already has too many items!"
+  
+  # Ritual messages
+  ritual-started: "&6Ritual circle activated! Drop items or make sacrifices to begin."
+  ritual-cancelled: "&7Ritual cancelled. Items have been returned."
+  ritual-executing: "&5The ritual '%ritual%' is being performed..."
+  ritual-invalid-circle: "&cThis is not a valid ritual circle! Check the structure."
+  ritual-sacrifice-added: "&8A %sacrifice% has been sacrificed for the ritual."
+  ritual-already-active: "&cYou already have an active ritual!"
+  
+  # Command messages
+  no-permission: "&cYou don't have permission to use this."
+  reload-complete: "&aWispWorks configuration reloaded!"
+  plugin-info: "&6WispWorks"
+  recipes-reloaded: "&aRecipes have been reloaded! Found {count} recipes."
+  unknown-command: "&cUnknown command. Use: &7/wispworks [reload|info|give]"
+  give-usage: "&cUsage: /wispworks give <mutation-bonemeal|mutation-apple> [player]"
+  player-not-found: "&cPlayer not found: %player%"
+  console-needs-player: "&cYou must specify a player when running from console."
+  gave-mutation-bonemeal: "&aGave Mutation Bonemeal to %player%"
+  gave-mutation-apple: "&aGave Mutation Apple to %player%"
+  received-mutation-bonemeal: "&aYou received a Mutation Bonemeal!"
+  received-mutation-apple: "&aYou received a Mutation Apple!"
+  unknown-item-type: "&cUnknown item type. Use: mutation-bonemeal or mutation-apple"
+
+  # Info command messages
+  active-cauldrons: "&7Active Magic Cauldrons: &e%count%"
+  loaded-recipes: "&7Loaded Recipes: &e%count%"
+  ritual-recipes: "&7Ritual Recipes: &e%count%"
+  available-recipes: "&7Available Recipes: &e%recipes%"
+  
+  # Manager messages
+  could-not-create-cauldrons-file: "Could not create cauldrons.yml file!"
+  could-not-save-cauldrons-file: "Could not save cauldrons.yml file!"
+  loaded-cauldrons: "Loaded %count% magic cauldrons."
+  no-recipes-section: "No recipes section found in config.yml!"
+  empty-recipe: "Empty recipe for: %recipe%"
+  invalid-material-recipe: "Invalid material in recipe '%recipe%': %material%"
+  invalid-result-material: "Invalid result material: %material%"
+  loaded-recipe: "Loaded recipe: %recipe% = %ingredients%"
+  loaded-recipes-count: "Loaded %count% recipes from config."
+  no-rituals-section: "No rituals section found in config.yml!"
+  loaded-ritual: "Loaded ritual: %ritual%"
+  failed-to-load-ritual: "Failed to load ritual: %ritual%"
+  loaded-rituals-count: "Loaded %count% ritual recipes."
+  unknown-ritual-effect: "Unknown ritual effect type: %effect%"
+  
+  # Mutation messages
+  plant-cannot-mutate: "&cThis plant cannot be mutated!"
+  creature-cannot-mutate: "&cThis creature cannot be mutated!"
+  cannot-mutate-players: "&cYou cannot mutate players!"
+  invalid-plant-material: "Invalid plant material in config: %material%"
+  invalid-entity-type: "Invalid entity type in config: %entity%"
+  
+  # Config message not found fallback
+  message-not-found: "&cMessage not found: %key%"
+  
+  # Ritual effect messages
+  blood-moon-rises: "&4Blood Moon Rises"
+  blood-moon-subtitle: "&cThe ritual has begun..."
+  ritual-crafted: "&bYou have crafted %amount%x %item%!"
+  unknown-crafting-result: "&cUnknown crafting result: %result%"
+  ritual-sacrifice-message: "&cYou have been sacrificed in a dark ritual..."
+  ritual-action-bar: "&6Ritual: &7%recipe%"
+  ritual-sacrifice-metadata-key: "ritual_sacrifice" # Don't change this, unless you know what you're doing
+  
+  # Item utility messages
+  mutation-bonemeal-name: "&dMutation Bonemeal"
+  mutation-bonemeal-lore-1: "&7A mystical bonemeal infused with"
+  mutation-bonemeal-lore-2: "&7transformative properties."
+  mutation-bonemeal-lore-3: ""
+  mutation-bonemeal-lore-4: "&eRight-click on any creeping plant"
+  mutation-bonemeal-lore-5: "&eto transform it randomly!"
+  
+  mutation-apple-name: "&dMutation Apple"
+  mutation-apple-lore-1: "&7A magical apple that holds the"
+  mutation-apple-lore-2: "&7power of transformation."
+  mutation-apple-lore-3: ""
+  mutation-apple-lore-4: "&eRight-click on any mob to"
+  mutation-apple-lore-5: "&etransform it randomly!"
