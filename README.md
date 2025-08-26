@@ -1,7 +1,7 @@
 # WispWorks ![Version](https://img.shields.io/badge/version-1.1_ALPHA-purple.svg)
 
 ---
-[![Discord](https://img.shields.io/badge/JOIN_OUR_DISCORD-5662f6?style=for-the-badge&logo=DISCORD&logoColor=white)]([https://discord.gg/rPnNBDGS6k)
+[![Discord](https://img.shields.io/badge/JOIN_OUR_DISCORD-5662f6?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/rPnNBDGS6k)
 [![Spigot](https://img.shields.io/badge/SPIGOT-ffd000?style=for-the-badge&logo=SPIGOT&logoColor=white)](https://www.spigotmc.org/resources/wispworks.128346/)
 ## Status
 
